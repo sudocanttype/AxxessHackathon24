@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .logo-small {
+      width: 50px; /* Adjust the width as necessary */
+      height: auto; /* Maintain aspect ratio */
+    }
+    .circle-bg {
+      fill: none;
+      stroke: #eee;
+      stroke-width: 4;
+    }
+    .circle {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+  </style>
+</head>
+<body class="bg-gray-800 text-white font-roboto flex flex-col" style="min-height: 100%;">
+  <header class="flex justify-start items-center p-4 border-b border-gray-700">
+    <img src="Telekinetic logo.png" alt="Logo" class="logo-small mr-4">
+    <h1 class="text-4xl font-bold">Your Results</h1>
+  </header>
+
+  <div class="flex-grow flex items-center justify-center">
+  <img src="good.gif" alt="Example GIF" style="width:50%">
+    <svg viewBox="0 0 36 36" class="circular-chart" width="200" height="200">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <path class="circle"
+        stroke="#05b4ff"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <text x="18" y="20.35" class="percentage" fill="#fff" text-anchor="middle" alignment-baseline="central" font-size="6" font-family="Roboto, sans-serif"></text>
+    </svg>
+  </div>
+
+  
+    
+ <div class="mt-auto mb-4 px-4">
+    <div>
+      <p class="text-lg font-semibold text-center">93% Accuracy</p>
+      <p class="text-lg mt-2">Points of error:</p>
+      <ul class="list-disc list-inside">
+        <li>Legs</li>
+        <li>Back</li>
+      </ul>
+      <p class="text-lg mt-2">Overall:</p>
+      <p>Good effort, almost there, just improve arm turn radius</p>
+    </div>
+
+    <div class="mt-8">
+      <button onclick="window.history.go(-2)" class="bg-blue-600 py-2 px-4 rounded text-lg font-bold w-full">Next Exercise</button>
+    </div>
+  </div>
+
+
+  <script>
+    function updateProgressBar(accuracy) {
+      const circumference = 15.9155 * 2 * Math.PI;
+      const offset = circumference - (accuracy / 100 * circumference);
+      const circle = document.querySelector('.circle');
+      circle.style.strokeDasharray = `${circumference} ${circumference}`;
+      circle.style.strokeDashoffset = offset;
+
+      // Update the percentage text
+      const percentage = document.querySelector('.percentage');
+      percentage.textContent = `${accuracy}%`;
+    }
+
+    updateProgressBar(93); // Call this function with the desired accuracy percentage
+  </script>
+</body>
+</html>
+
+
+
+

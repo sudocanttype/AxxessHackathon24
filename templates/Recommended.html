@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise Recommendations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: #2563EB; /* Tailwind blue-600 */
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem; /* Slightly rounded corners */
+      text-decoration: none; /* Remove underline from link */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-black text-white relative">
+  <!-- Back button -->
+  <a href="HomePage.html" class="back-button">Back</a>
+
+  <div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="bg-blue-950/45 text-white p-6 rounded-2xl shadow-lg text-center w-full">
+      <img src="Telekinetic logo.png" alt="Logo placeholder" class="mx-auto">
+      <h1 class="text-3xl font-bold my-5">Exercises</h1>
+      <p class="text-gray-300 text-base mb-5">Recommended by Dr. Fisher</p>
+      <div class="space-y-5">
+        
+        <!-- Exercise 1 -->
+        <div class="flex flex-col items-center md:flex-row md:items-start mb-4">
+          <img src="squat.jpg" alt="Person doing quadruped arm/leg raise" class="w-24 h-24 rounded-full mb-3 md:mb-0 md:mr-4">
+          <a href="squat.html" class="bg-blue-600 py-2 px-4 rounded text-lg font-bold">Squats</a>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="flex flex-col items-center md:flex-row md:items-start mb-4">
+          <img src="catcamel.jpg" alt="Person doing cat and camel exercise" class="w-24 h-24 rounded-full mb-3 md:mb-0 md:mr-4">
+          <a href="catcamel.html" class="bg-blue-600 py-2 px-4 rounded text-lg font-bold">Cat and camel</a>
+        </div>
+
+        <!-- Additional exercises here -->
+        <!-- ... -->
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

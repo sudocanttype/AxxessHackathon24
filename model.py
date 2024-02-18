@@ -454,8 +454,34 @@ else:
 
     return keypoints_with_scores
 
+import math
 
-def process_gif(image_path):
+def dotproduct(v1, v2):
+  return sum((a*b) for a, b in zip(v1, v2))
+
+def length(v):
+  return math.sqrt(dotproduct(v, v))
+
+def angle(v1, v2):
+  return math.acos((dotproduct(v1, v2) / (length(v1) * length(v2)))*math.pi/180)
+#for squat
+angle(keypoints_with_scores[0][0][6][:2], keypoints_with_scores[0][0][12][:2])*180/math.pi
+
+def compare_arrays(arr1, arr2):
+    if len(arr1) != len(arr2):
+        return False
+
+    threshold = 0.02
+
+    for val1, val2 in zip(arr1, arr2):
+        max_difference = val1 * threshold
+        if abs(val1 - val2) > max_difference:
+            return False
+
+    return True
+
+
+def process_gif(image_path, name):
     image = tf.io.read_file(image_path)
     image = tf.image.decode_gif(image)
     num_frames, image_height, image_width, _ = image.shape
@@ -467,15 +493,5 @@ def process_gif(image_path):
       keypoints_with_scores = run_inference(
           movenet, image[frame_idx, :, :, :], crop_region,
           crop_size=[input_size, input_size])
-      output_images.append(draw_prediction_on_image(
-          image[frame_idx, :, :, :].numpy().astype(np.int32),
-          keypoints_with_scores, crop_region=None,
-          close_figure=True, output_image_height=300))
-      crop_region = determine_crop_region(
-          keypoints_with_scores, image_height, image_width)
-
-    # Prepare gif visualization.
-    output = np.stack(output_images, axis=0)
-
-    # imageio.mimsave('./animation.gif', output, 100)
-    to_gif(output, duration=100)
+    output.append(keypoints_with_scores)
+    return (compare_arrays(output_images, wow[name+'.gif']))

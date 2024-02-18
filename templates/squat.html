@@ -44,24 +44,44 @@
         <h2 class="text-xl font-bold mb-2">Squats</h2>
         <img src="Squat_Dataset.gif" alt="Squats Exercise" class="mb-4"> <!-- Ensure the image path is correct -->
         <!-- Corrected Upload Video button -->
-        <form method="post" enctype="multipart/form-data">
+        <form id="myForm" method="post" enctype="multipart/form-data">
           <label class="bg-blue-500 text-white py-2 px-6 rounded text-lg font-bold cursor-pointer">
             Upload Video
-            <input type="file" name="file" class="hidden" accept="video/*">
+            <input type="file" name="file" class="hidden" accept="/*">
           </label>
           <input type="submit" value="Upload" class="bg-blue-600 text-white py-2 px-4 rounded text-lg font-bold mt-2">
         </form>
       </div>
+      <p id="loading" style="opacity:0; width:100%; "> Loading...</p>
       
     </div>
   </div>
 
   <script>
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
     function handleVideoUpload(event) {
       var files = event.target.files;
       // Perform file upload operation here
       console.log('Uploaded file:', files[0]);
       // You might want to send the file to the server or display a preview
+    
+  };
+      document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission behavior
+
+    document.getElementById("loading").style.opacity = 100;
+        sleep(1300).then(() => {
+      document.location.href="report.html"
+});
+
+  
+  // Perform your custom logic here
+});
+
+
   </script>
 </body>
 </html>
